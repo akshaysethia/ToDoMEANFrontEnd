@@ -21,7 +21,7 @@ import { ErrorprocessorService } from './services/errorprocessor.service';
 import { AuthService } from './services/auth.service';
 import { AuthGuardService } from './services/auth-guard.service';
 import { AuthInterceptor, UnauthorizedInterceptor } from './services/auth.interceptor';
-import { baseURL } from './shared/baseURL';
+import { baseURL } from './shared/baseurl';
 
 @NgModule({
   declarations: [
