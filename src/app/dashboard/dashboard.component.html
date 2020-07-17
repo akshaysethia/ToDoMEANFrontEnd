@@ -1,0 +1,58 @@
+<div class="container-fluid">
+    <div class="jumbotron bg-dark">
+        <div class="container text-center">
+            <h1 class="display-4">ToDos'</h1>
+            <p class="lead">Welcome {{ username }}</p>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row" *ngIf="addtask">
+        <div class="col text-center">
+            <div class="alert alert-light bg-dark text-light mb-5" role="alert">
+                {{ addtask }}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col text-center">
+            <button type="button" class="btn btn-outline-info mb-3" (click)="openAddTask()">Add Task</button>
+        </div>
+        <div class="col text-center">
+            <button type="button" class="btn btn-outline-danger mb-3" (click)="deleteAll()">Delete All</button>
+        </div>
+    </div>
+    <br>
+    <div class="row" *ngIf="tasks">
+        <div class="col-sm-12 col-md-6 col-lg-4 text-center" *ngFor="let t of tasks">
+            <div class="card bg-dark text-light mb-5" style="border: thin solid white;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ t.taskname }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ t.duedate | date }}</h6>
+                    <p class="card-text">{{ t.priority }}</p>
+                    <p class="card-text" style="font-size: large;">{{ t.taskinfo }}</p>
+                    <br>
+                    <div class="row">
+                        <div class="col"><button class="card-link btn btn-outline-warning" (click)="openEdit(t)">Edit ToDo</button></div>
+                        <div class="col"><button class="card-link btn btn-outline-danger" (click)="delete(t._id)">Delete
+                                ToDo</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" [hidden]="tasks || errMsg || noTask">
+        <div class="col text-center">
+            <div class="spinner-border text-light bg-dark" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+    </div>
+    <div class="row my-5" *ngIf="noTask">
+        <div class="col text-center" style="border-radius: 5px;">
+            <div class="alert alert-light bg-dark text-light" role="alert">
+                No Tasks Available !
+            </div>
+        </div>
+    </div>
+</div>

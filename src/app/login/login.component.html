@@ -1,0 +1,38 @@
+<div class="container-fluid">
+    <div class="jumbotron bg-dark">
+        <div class="container text-center">
+            <h1 class="display-4">Login</h1>
+            <br>
+            <p class="lead">Hit up the details and add some ToDos</p>
+        </div>
+    </div>
+</div>
+<div class="container mb-5">
+    <div class="row" *ngIf="errMsg">
+        <div class="col text-center">
+            <div class="alert alert-danger" role="alert">{{ errMsg }}</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col text-center my-auto">
+            <form novalidate (ngSubmit)="onSubmit()" #loginForm="ngForm">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input class="form-control my-2" name="username" type="text" id="username" [(ngModel)]="user.username" placeholder="johndoe" #username="ngModel" required>
+                    <div class="alert alert-danger" *ngIf="username.errors?.required && username?.touched">
+                        Username is required
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input class="form-control my-2" name="password" type="password" id="password" [(ngModel)]="user.password" placeholder="JohnDoe123" #password="ngModel" required>
+                    <div class="alert alert-danger" *ngIf="password.errors?.required && password?.touched">
+                        Password is required
+                    </div>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-outline-danger" [disabled]="loginForm.invalid">Login</button>
+            </form>
+        </div>
+    </div>
+</div>

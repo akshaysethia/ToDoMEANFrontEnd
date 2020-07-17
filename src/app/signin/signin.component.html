@@ -1,0 +1,49 @@
+<div class="container-fluid">
+    <div class="jumbotron bg-dark">
+        <div class="container text-center">
+            <h1 class="display-4">Register</h1>
+            <br>
+            <p class="lead">Fill this form and keep going !</p>
+        </div>
+    </div>
+</div>
+<div class="container mb-5">
+    <div class="row" *ngIf="errMsg">
+        <div class="col text-center">
+            <div class="alert alert-danger" role="alert">{{ errMsg }}</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col text-center my-auto">
+            <form novalidate [formGroup]="signupForm" #suForm="ngForm" (submit)="onSubmit()">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input class="form-control" type="text" name="name" id="name" formControlName="name" placeholder="John Doe" required>
+                    <div class="alert alert-danger" role="alert" *ngIf="formErrors.name">{{ formErrors.name }}</div>
+                </div>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input class="form-control" type="text" name="username" id="username" formControlName="username" placeholder="JohnDoe" required>
+                    <div class="alert alert-danger" role="alert" *ngIf="formErrors.username">{{ formErrors.username }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input class="form-control" type="email" name="email" id="email" formControlName="email" placeholder="JohnDoe@xyz.com" required>
+                    <div class="alert alert-danger" role="alert" *ngIf="formErrors.email">{{ formErrors.email }}</div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input class="form-control" type="password" name="password" id="password" formControlName="password" placeholder="JohnDoe123" required>
+                    <div class="alert alert-danger" role="alert" *ngIf="formErrors.password">{{ formErrors.password }}
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col text-right"><button type="submit" [disabled]="signupForm.invalid" class="btn btn-outline-success">Register</button></div>
+                    <div class="col text-left"><button type="reset" (click)="reset()" class="btn btn-outline-danger">Reset</button></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

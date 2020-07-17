@@ -1,0 +1,37 @@
+<div style="border-radius: 5px; border: 1px solid white;">
+    <div class="modal-header bg-dark text-light">
+        <h4 class="modal-title" id="modal-basic-title">Add Task</h4>
+        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true" style="color: white;">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body bg-dark text-light text-center">
+        <form novalidate [formGroup]="addTaskForm" #atForm="ngForm" (ngSubmit)="onSubmit()">
+            <div class="form-group my-2">
+                <label for="taskname">Task Name</label>
+                <input class="form-control" type="text" name="taskname" id="taskname" formControlName="taskname" placeholder="Get A Cookie" required>
+                <div class="alert alert-danger" role="alert" *ngIf="formErrors.taskname">{{ formErrors.taskname }}</div>
+            </div>
+            <div class="form-group my-2">
+                <label for="taskinfo">Task Info</label>
+                <textarea class="form-control" name="taskinfo" id="taskinfo" cols="30" rows="3" formControlName="taskinfo" placeholder="Get the Cookie from a Local Store !" required></textarea>
+                <div class="alert alert-danger" role="alert" *ngIf="formErrors.taskinfo">{{ formErrors.taskinfo }}</div>
+            </div>
+            <div class="form-group my-2">
+                <label for="duedate">Due Date</label>
+                <input class="form-control" type="date" name="duedate" id="duedate" formControlName="duedate">
+            </div>
+            <div class="form-group">
+                <label for="priority">Priority</label>
+                <select id="priority" class="form-control" formControlName="priority">
+                    <option disabled>Select One</option>
+                    <option *ngFor="let p of priorityType" [value]="p">{{ p }}</option>
+                </select>
+            </div>
+            <div class="row">
+                <div class="col text-right"><button type="submit" class="btn btn-outline-success mt-2" [disabled]="addTaskForm.invalid">Add Task</button></div>
+                <div class="col text-left"><button type="button" class="btn btn-outline-danger mt-2" (click)="activeModal.dismiss('Cross click')">Close</button></div>
+            </div>
+        </form>
+    </div>
+</div>

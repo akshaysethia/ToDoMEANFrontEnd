@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "todo-19981214": {
+      "hosting": {
+        "Angular": [
+          "todo-19981214"
+        ]
+      }
+    }
+  }
+}
